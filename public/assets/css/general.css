@@ -1,0 +1,21 @@
+body {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+p {
+    font-size: 1.5em;
+}
+.redPanel {
+    border: 4px solid black;
+    border-radius: 25px;
+    text-align: center;
+    background-color: #DC3545;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+a:hover {
+    color: black;
+}
