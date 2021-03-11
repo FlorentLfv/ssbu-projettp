@@ -35,11 +35,8 @@ elseif ($_GET['view'] === 'tierLists'){
 elseif ($_GET['view'] === 'tournois'){
     require(APP_ROOT . 'views/tournament.php');
 }
-elseif ($_GET['view'] === '404') {
-    require(APP_ROOT . 'views/404.php');
-}
 else {
-    header('Location:/404');
+    require(APP_ROOT . 'views/404.php');
 }
 
 require_once(APP_ROOT . 'views/parts/footer.php');

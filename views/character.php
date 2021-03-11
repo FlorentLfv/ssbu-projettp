@@ -16,7 +16,7 @@
 
         <h3 class="mt-3 display-5"><strong>Gimmicks / habitudes</strong></h3>
 
-        <div class="col-6 offset-3" id="frameDataLink">
+        <div class="col-6 offset-3 redPanel">
             <h2><a href="/frameData">Accéder à la frame data du perso</a></h2>
         </div>
 
