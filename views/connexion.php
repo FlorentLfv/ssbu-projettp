@@ -31,6 +31,12 @@
                     <input type="password" name="confirmPassword" id="confirmPassword" class="col-5" value="<?= !empty($_POST['confirmPassword']) ? $_POST['confirmPassword'] : '' ?>" />
                     <p class="text-danger text-center "><?= isset($formErrors['confirmPassword']) ? $formErrors['confirmPassword'] : '' ?></p>
                 </div>
+                <!-- Champ ville tournoi -->
+                <div class="form-group">
+                    <label for="cityOfTournament" class="text-left col-5 mb-3 labelTextSize">Votre ville de tournois :</label>
+                    <input type="password" name="cityOfTournament" id="cityOfTournament" class="col-5" value="<?= !empty($_POST['cityOfTournament']) ? $_POST['cityOfTournament'] : '' ?>" />
+                    <p class="text-danger text-center "><?= isset($formErrors['cityOfTournament']) ? $formErrors['cityOfTournament'] : '' ?></p>
+                </div>
                 <!-- Liste personnages -->
                 <div class="form-group">
                     <label for="mainCharacter" class="text-left col-5 mb-3 labelTextSize">Votre personnage principal :</label>

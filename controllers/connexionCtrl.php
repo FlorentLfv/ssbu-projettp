@@ -49,13 +49,25 @@ if (isset($_POST['signUpButton']))
     {
         $formErrors['confirmPassword'] = 'Veuillez confirmer votre mot de passe';
     }
+
+    //Vérification ville tournoi
+    if (!empty($_POST['cityOfTournament']))
+    {
+        // inner join ?
+        //$cityOfTournament->cityName = htmlentities($_POST['cityOfTournament']);
+    }
+    else
+    {
+        $formErrors['cityOfTournament'] = 'Vous n\'avez pas renseigné votre ville de tournois.';
+    }
+
 var_dump($_POST);
     if (empty($formErrors))
     {
         if ($user->addUser())
         {
             
-            $message = 'Vous êtes inscrit';
+            $message = 'Bienvenue parmi nous';
         }
         else
         {
