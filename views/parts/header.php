@@ -10,11 +10,32 @@
 </head>
 
 <body>
-    <!-- Haut de page -->
+    <!-- Header -->
     <div class="container-fluid">
         <div class="row">
             <!-- Logo jeu -->
             <img src="../assets/img/logo ssbu.png" id="gameLogo" class="col-4 mt-4 mb-4" alt="Logo Super Smash Bros Ultimate" />
-            <!-- Bouton connexion/inscription -->
-            <a href="/connexion" class="btn btn-danger col-2 offset-6 mb-auto">Connexion / Inscription</a>
-            <!-- Fin haut de page -->
+            <?php if (isset($_SESSION['user'])) : ?>
+                <div class="dropdown">
+                    <button class="btn btn-danger dropdown-toggle col-2 offset-10" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?= $_SESSION['user']['pseudo'] ?>
+                    </button>
+                    <ul class="dropdown-menu bg-danger text-center" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <!-- Bouton dashboard admin -->
+                            <a href="/dashboard">Dashboard</a>
+                        </li>
+                        <li>
+                            <!-- Bouton profil -->
+                            <a href="/profile">Profil</a>
+                        </li>
+                        <li>
+                            <!-- Bouton connexion/inscription -->
+                            <a href="/déconnexion">Déconnexion</a>
+                        </li>
+                    </ul>
+                </div>
+            <?php else : ?>
+                <!-- Bouton connexion/inscription -->
+                <a href="/connexion" class="btn btn-danger col-2 offset-6 mb-auto">Connexion / Inscription</a>
+            <?php endif; ?>

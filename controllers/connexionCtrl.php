@@ -1,5 +1,7 @@
 <?php
+
 require(__DIR__ . '../../models/user.php');
+require(__DIR__ . '../../models/cityoftournament.php');
 // Déclaration d'un tableau vide pour enregistrer les erreurs de formulaire
 $formErrors = array();
 
@@ -7,6 +9,7 @@ $formErrors = array();
 if (isset($_POST['signUpButton']))
 {
     $user = new User();
+    $city = new CityOfTournament();
     //Vérification pseudo
     if (!empty($_POST['pseudo']))
     {
@@ -30,6 +33,7 @@ if (isset($_POST['signUpButton']))
     // Vérification mot de passe inscription
     if (!empty($_POST['passwordSignUp']))
     {
+        $user->password = htmlentities($_POST['passwordSignUp']);
         $user->password = password_hash($_POST['passwordSignUp'], PASSWORD_BCRYPT);
     }
     else
@@ -50,29 +54,36 @@ if (isset($_POST['signUpButton']))
         $formErrors['confirmPassword'] = 'Veuillez confirmer votre mot de passe';
     }
 
-    //Vérification ville tournoi
-    if (!empty($_POST['cityOfTournament']))
+    //Vérification code postal
+    if (!empty($_POST['zipCode']))
     {
-        // inner join ?
-        //$cityOfTournament->cityName = htmlentities($_POST['cityOfTournament']);
+        $city->cityName = htmlentities($_POST['zipCode']);
     }
     else
     {
-        $formErrors['cityOfTournament'] = 'Vous n\'avez pas renseigné votre ville de tournois.';
+        $formErrors['zipCode'] = 'Vous n\'avez pas renseigné un code postal';
     }
 
-var_dump($_POST);
+    //Vérification ville
+    if (!empty($_POST['city']))
+    {
+        $user->idCity = htmlentities($_POST['city']);
+    }
+    else
+    {
+        $formErrors['city'] = 'Vous n\'avez pas renseigné votre ville de tournois';
+    }
+    var_dump($_POST);
     if (empty($formErrors))
     {
         if ($user->addUser())
         {
-            
-            $message = 'Bienvenue parmi nous';
+            $messageSignUp = 'Bienvenue parmi nous';
         }
         else
         {
             var_dump($user->addUser());
-            $message = 'Un problème est survenu lors de l\'inscription';
+            $messageSignUp = 'Un problème est survenu lors de l\'inscription';
         }
     }
     // Vérification personnage
@@ -91,32 +102,56 @@ var_dump($_POST);
 }
 
 // PARTIE CONNEXION
+if (isset($_POST['signInButton']))
+{
+    $user = new User();
+    // Vérification adresse mail connexion
+    if (!empty($_POST['emailSignIn']) && filter_var(FILTER_VALIDATE_EMAIL))
+    {
+        $user->mail = $_POST['emailSignIn'];
+    }
+    elseif (empty($_POST['emailSignIn']))
+    {
+        $formErrors['emailSignIn'] = 'Vous n\'avez pas renseigné votre adresse mail.';
+    }
+    else
+    {
+        $formErrors['emailSignIn'] = 'Votre adresse mail n\'est pas correcte.';
+    }
 
-// Vérification adresse mail connexion
-/* if (!empty($_POST['emailSignIn']) && filter_var(FILTER_VALIDATE_EMAIL))
-{
-    $emailSignIn = $_POST['emailSignIn'];
-}
-elseif (empty($_POST['emailSignIn']))
-{
-    $formErrors['emailSignIn'] = 'Vous n\'avez pas renseigné votre adresse mail.';
-}
-else
-{
-    $formErrors['emailSignIn'] = 'Votre adresse mail n\'est pas correcte.';
-}
+    // Vérification mot de passe connexion
+    if (!empty($_POST['passwordSignIn']))
+    {
+        $user->password = htmlentities($_POST['passwordSignIn']);
+    }
+    elseif (isset($_POST['passwordSignIn']) && empty($_POST['passwordSignIn']))
+    {
+        $formErrors['passwordSignIn'] = 'Vous n\'avez pas renseigné votre adresse mail.';
+    }
+    else
+    {
+        $formErrors['passwordSignIn'] = 'Votre adresse mail n\'est pas correcte.';
+    }
 
-// Vérification mot de passe connexion
-if (!empty($_POST['passwordSignIn']))
-{
-    $passwordSignIn = htmlentities($_POST['passwordSignIn']);
+    //Pas d'erreur dans la saisie du formulaire
+    if (empty($formError))
+    {
+        $userInfo = $user->getUserInfo();
+        if ($userInfo !== false)
+        {
+            $isGoodPassword = password_verify($user->password, $userInfo->password);
+            if ($isGoodPassword)
+            {
+                var_dump('test');
+                $_SESSION['user']['pseudo'] = $userInfo->pseudo;
+                $_SESSION['user']['idUser'] = $userInfo->idUser;
+                header('location:/home');
+                exit;
+            }
+            else
+            {
+                $messageSignIn = 'Votre mot de passe et/ou votre courriel sont incorrecte';
+            }
+        }
+    }
 }
-elseif (isset($_POST['passwordSignIn']) && empty($_POST['passwordSignIn']))
-{
-    $formErrors['passwordSignIn'] = 'Vous n\'avez pas renseigné votre adresse mail.';
-}
-else
-{
-    $formErrors['passwordSignIn'] = 'Votre adresse mail n\'est pas correcte.';
-}
- */

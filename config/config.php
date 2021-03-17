@@ -1,4 +1,6 @@
 <?php
+// on initie une session vide
+session_start();
 // on définit l'adresse de la bdd
 define('DB_HOST', 'localhost');
 // on définit le nom de la bdd

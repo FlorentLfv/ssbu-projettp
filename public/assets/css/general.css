@@ -11,6 +11,7 @@ p {
     border-radius: 25px;
     text-align: center;
     background-color: #DC3545;
+    padding-top: 3px;
 }
 a {
     color: white;

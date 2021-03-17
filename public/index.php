@@ -1,7 +1,13 @@
 <?php
+// on appelle les fichiers
 require_once(__DIR__ . '../../config/config.php');
-require_once(APP_ROOT . 'views/parts/header.php');
+require_once(__DIR__ . '../../models/database.php');
 
+if (!isset($_GET['action'])){
+    require_once(APP_ROOT . 'views/parts/header.php');
+}
+
+//refaire en switch
 if (empty($_GET['view']) || $_GET['view'] === 'home'){
     require(APP_ROOT . 'views/home.php');
 }
@@ -35,8 +41,22 @@ elseif ($_GET['view'] === 'tierLists'){
 elseif ($_GET['view'] === 'tournois'){
     require(APP_ROOT . 'views/tournament.php');
 }
+elseif ($_GET['view'] === 'dashboard'){
+    require(APP_ROOT . 'views/dashboardAdmin.php');
+}
+elseif ($_GET['view'] === 'déconnexion'){
+    require(APP_ROOT . 'views/logout.php');
+}
+elseif ($_GET['view'] === 'profile'){
+    require(APP_ROOT . 'views/profile.php');
+}
+elseif ($_GET['view'] === 'ajax' && $_GET['action'] === 'getZipCode') {
+    require(APP_ROOT . 'controllers/ajax.php');
+}
 else {
     require(APP_ROOT . 'views/404.php');
 }
 
-require_once(APP_ROOT . 'views/parts/footer.php');
+if (!isset($_GET['action'])){
+    require_once(APP_ROOT . 'views/parts/footer.php');
+}

@@ -1,7 +1,7 @@
 <?php
-require('database.php');
 class User extends Database
 {
+    // Déclaration des attributs
     public $idUser = 0;
     public $pseudo = '';
     public $mail = '';
@@ -17,15 +17,31 @@ class User extends Database
     public function addUser()
     {
         // on définit la requête pour ajouter un utilisateur qu'on stocke dans $query
-        $query = 'INSERT INTO `6d5ghg_users` (`pseudo`, `mail`, `password`) VALUES (:pseudo, :mail, :password);';
+        $query = 'INSERT INTO `6d5ghg_users` (`pseudo`, `mail`, `password`, `idCity`) VALUES (:pseudo, :mail, :password, :idCity);';
         $pdoStatement = $this->pdo->prepare($query);
-        // on attribue la valeur de :pseudo à l'attribut pseudo
+        // on hydrate la valeur de :pseudo à l'attribut pseudo
         $pdoStatement->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
-        // on attribue la valeur de :mail à l'attribut mail
+        // on hydrate la valeur de :mail à l'attribut mail
         $pdoStatement->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-        // on attribue la valeur de :password à l'attribut password
+        // on hydrate la valeur de :password à l'attribut password
         $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':idCity', $this->idCity, PDO::PARAM_INT);
+        
         // on exécute la méthode pour insérer les données dans la bdd
         return $pdoStatement->execute();
+    }
+
+    /**
+     * Méthode permettant de récupérer le nom d'utilisateur de la personne connecté
+     *
+     * @return object
+     */
+    public function getUserInfo()
+    {
+        $query = 'SELECT `idUser`,`pseudo`, `password` FROM `6d5ghg_users` WHERE `mail` = :mail';
+        $pdoStatment = $this->pdo->prepare($query);
+        $pdoStatment->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        $pdoStatment->execute();
+        return $pdoStatment->fetch(PDO::FETCH_OBJ);
     }
 }
