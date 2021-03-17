@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/general.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <title>Super Smash : Ultimate Guide FR</title>
     <link rel="shortcut icon" href="assets/img/SmashBall.svg" />
 </head>
@@ -25,13 +25,15 @@
                             <!-- Bouton dashboard admin -->
                             <a href="/dashboard">Dashboard</a>
                         </li>
+                        <hr />
                         <li>
                             <!-- Bouton profil -->
                             <a href="/profile">Profil</a>
                         </li>
+                        <hr />
                         <li>
                             <!-- Bouton connexion/inscription -->
-                            <a href="/déconnexion">Déconnexion</a>
+                            <a href="/logout">Déconnexion</a>
                         </li>
                     </ul>
                 </div>

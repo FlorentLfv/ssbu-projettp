@@ -6,6 +6,7 @@ class User extends Database
     public $pseudo = '';
     public $mail = '';
     public $password = '';
+    public $idCity = null;
 
     /**
      * méthode pour ajouter un utilisateur
@@ -25,6 +26,7 @@ class User extends Database
         $pdoStatement->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         // on hydrate la valeur de :password à l'attribut password
         $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
+        // on hydrate la valeur de :idCity à l'attribut idCity
         $pdoStatement->bindValue(':idCity', $this->idCity, PDO::PARAM_INT);
         
         // on exécute la méthode pour insérer les données dans la bdd
@@ -43,5 +45,35 @@ class User extends Database
         $pdoStatment->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $pdoStatment->execute();
         return $pdoStatment->fetch(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Méthode permettant de modifier les informations utilisateur
+     * 
+     * @return bool
+     */
+    public function updateUserInfo()
+    {
+        $query = 'UPDATE `6d5ghg_users` SET `pseudo` = :pseudo, `mail` = :mail, `password` = :password, `idCity` = :idCity WHERE `idUser` = :idUser';
+        $pdoStatement = $this->pdo->prepare($query);
+        $pdoStatement->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':idCity', $this->idCity, PDO::PARAM_INT);
+        $pdoStatement->bindValue(':idUser', $this->idUser, PDO::PARAM_INT);
+        return $pdoStatement->execute();
+    }
+
+    /**
+     * Méthode pour supprimer un utilisateur
+     * 
+     * @return bool
+     */
+    public function deleteUser()
+    {
+        $query = 'DELETE FROM `6d5ghg_users` WHERE `idUser` = :idUser';
+        $pdoStatement = $this->pdo->prepare($query);
+        $pdoStatement->bindValue(':idUser', $this->idUser, PDO::PARAM_INT);
+        return $pdoStatement->execute();
     }
 }

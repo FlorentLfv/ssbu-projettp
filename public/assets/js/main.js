@@ -42,9 +42,9 @@ xhr.onreadystatechange = function () {
             //on définit la variable option qui va créer une option dans le select en HTML
             let option = document.createElement('option');
             //chaque option aura pour valeur l'id du tableau cityInfo
-            option.value = cityInfo.id;
+            option.value = cityInfo.idCity;
             //chaque option aura pour texte le nom de la ville du tableau cityInfo
-            option.textContent = cityInfo.town;
+            option.textContent = cityInfo.cityName;
             //on crée chaque option du select
             cityInput.appendChild(option);
         });

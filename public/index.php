@@ -11,7 +11,7 @@ if (!isset($_GET['action'])){
 if (empty($_GET['view']) || $_GET['view'] === 'home'){
     require(APP_ROOT . 'views/home.php');
 }
-elseif ($_GET['view'] === 'connexion'){
+elseif ($_GET['view'] === 'connexion' && empty($_SESSION['user'])){
     require(APP_ROOT . 'views/connexion.php');
 }
 elseif ($_GET['view'] === 'listePersonnages'){
@@ -22,9 +22,6 @@ elseif ($_GET['view'] === 'personnage'){
 }
 elseif ($_GET['view'] === 'frameData'){
     require(APP_ROOT . 'views/frameData.php');
-}
-elseif ($_GET['view'] === 'statsGénérales'){
-    require(APP_ROOT . 'views/generalStats.php');
 }
 elseif ($_GET['view'] === 'guides'){
     require(APP_ROOT . 'views/guides.php');
@@ -44,14 +41,17 @@ elseif ($_GET['view'] === 'tournois'){
 elseif ($_GET['view'] === 'dashboard'){
     require(APP_ROOT . 'views/dashboardAdmin.php');
 }
-elseif ($_GET['view'] === 'déconnexion'){
+elseif ($_GET['view'] === 'logout' && !empty($_SESSION['user'])){
     require(APP_ROOT . 'views/logout.php');
 }
-elseif ($_GET['view'] === 'profile'){
+elseif ($_GET['view'] === 'profile' && !empty($_SESSION['user'])){
     require(APP_ROOT . 'views/profile.php');
 }
 elseif ($_GET['view'] === 'ajax' && $_GET['action'] === 'getZipCode') {
     require(APP_ROOT . 'controllers/ajax.php');
+}
+elseif ($_GET['view'] === 'deleted'){
+    require(APP_ROOT . 'views/deleted.php');
 }
 else {
     require(APP_ROOT . 'views/404.php');

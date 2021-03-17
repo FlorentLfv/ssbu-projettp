@@ -1,5 +1,5 @@
 <?php if (isset($_SESSION['user'])) : ?>
-    <footer class="mt-5 col-12">
+    <footer class="col-12">
         <!-- Footer commentaire -->
         <div class="row pt-4 pb-2 bg-danger text-white">
             <div class="col-4 offset-1">
@@ -25,7 +25,7 @@
 <?php endif; ?>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-<?php if ($_GET['view'] === 'connexion') : ?>
+<?php if ($_GET['view'] === 'connexion' || $_GET['view'] === 'profile') : ?>
     <script src="/assets/js/main.js"></script>
 <?php endif; ?>
 </body>
