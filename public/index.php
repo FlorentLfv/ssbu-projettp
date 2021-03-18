@@ -38,7 +38,7 @@ elseif ($_GET['view'] === 'tierLists'){
 elseif ($_GET['view'] === 'tournois'){
     require(APP_ROOT . 'views/tournament.php');
 }
-elseif ($_GET['view'] === 'dashboard'){
+elseif ($_GET['view'] === 'dashboard' && !empty($_SESSION['user'])){
     require(APP_ROOT . 'views/dashboardAdmin.php');
 }
 elseif ($_GET['view'] === 'logout' && !empty($_SESSION['user'])){
@@ -50,8 +50,14 @@ elseif ($_GET['view'] === 'profile' && !empty($_SESSION['user'])){
 elseif ($_GET['view'] === 'ajax' && $_GET['action'] === 'getZipCode') {
     require(APP_ROOT . 'controllers/ajax.php');
 }
-elseif ($_GET['view'] === 'deleted'){
+elseif ($_GET['view'] === 'deleted' && !isset($_SESSION['user'])){
     require(APP_ROOT . 'views/deleted.php');
+}
+elseif ($_GET['view'] === 'signedUp' && !isset($_SESSION['user'])){
+    require(APP_ROOT . 'views/signedUp.php');
+}
+elseif ($_GET['view'] === 'modifiedUser' && !empty($_SESSION['user'])){
+    require(APP_ROOT . 'views/modifiedUser.php');
 }
 else {
     require(APP_ROOT . 'views/404.php');

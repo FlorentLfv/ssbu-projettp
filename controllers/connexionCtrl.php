@@ -90,13 +90,14 @@ if (isset($_POST['signUpButton']))
     //Vérification et exécution de la méthode addUser
     if (empty($formErrors))
     {
-        if ($user->addUser())
+        if (!$user->checkEmail())
         {
-            $messageSignUp = 'Bienvenue parmi nous';
+            $user->addUser();
+            header('Location:/signedUp');
         }
         else
         {
-            $messageSignUp = 'Un problème est survenu lors de l\'inscription';
+            $messageSignUp = 'Cette adresse mail est déjà utilisée';
         }
     }
 }
@@ -134,9 +135,9 @@ if (isset($_POST['signInButton']))
     }
 
     //Pas d'erreur dans la saisie du formulaire
-    if (empty($formError))
+    if (empty($formErrors))
     {
-        $userInfo = $user->getUserInfo();
+        $userInfo = $user->getUserConnexion();
         if ($userInfo !== false)
         {
             $isGoodPassword = password_verify($user->password, $userInfo->password);

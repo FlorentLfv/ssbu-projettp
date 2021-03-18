@@ -4,7 +4,7 @@ class Database
 {
     // on définit l'attribut pdo avec une valeur null
     protected $pdo = null;
-    // on déclare la méthode __construct pour établir une liaison avec bdd
+    // on déclare la méthode __construct pour établir une liaison avec la base de données
     public function __construct(){
         // on essaye de se connecter à la bdd
         try {

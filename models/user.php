@@ -14,7 +14,6 @@ class User extends Database
      * @return bool
      */
 
-    // possibilité de faire inner join pour intégrer ville tournoi ?
     public function addUser()
     {
         // on définit la requête pour ajouter un utilisateur qu'on stocke dans $query
@@ -38,11 +37,29 @@ class User extends Database
      *
      * @return object
      */
-    public function getUserInfo()
+    public function getUserConnexion()
     {
         $query = 'SELECT `idUser`,`pseudo`, `password` FROM `6d5ghg_users` WHERE `mail` = :mail';
         $pdoStatment = $this->pdo->prepare($query);
         $pdoStatment->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        $pdoStatment->execute();
+        return $pdoStatment->fetch(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Méthode permettant de récupérer le nom d'utilisateur de la personne connecté
+     *
+     * @return object
+     */
+    public function getUserInfo()
+    {
+        $query = 'SELECT `pseudo`, `mail`, `zipCode` 
+        FROM `6d5ghg_users` 
+        INNER JOIN `townzip` 
+        ON `6d5ghg_users`.`idCity` = `townzip`.`idCity` 
+        WHERE `idUser` = :idUser';
+        $pdoStatment = $this->pdo->prepare($query);
+        $pdoStatment->bindValue(':idUser', $this->idUser, PDO::PARAM_STR);
         $pdoStatment->execute();
         return $pdoStatment->fetch(PDO::FETCH_OBJ);
     }
@@ -54,7 +71,9 @@ class User extends Database
      */
     public function updateUserInfo()
     {
-        $query = 'UPDATE `6d5ghg_users` SET `pseudo` = :pseudo, `mail` = :mail, `password` = :password, `idCity` = :idCity WHERE `idUser` = :idUser';
+        $query = 'UPDATE `6d5ghg_users` 
+        SET `pseudo` = :pseudo, `mail` = :mail, `password` = :password, `idCity` = :idCity 
+        WHERE `idUser` = :idUser';
         $pdoStatement = $this->pdo->prepare($query);
         $pdoStatement->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         $pdoStatement->bindValue(':mail', $this->mail, PDO::PARAM_STR);
@@ -62,6 +81,20 @@ class User extends Database
         $pdoStatement->bindValue(':idCity', $this->idCity, PDO::PARAM_INT);
         $pdoStatement->bindValue(':idUser', $this->idUser, PDO::PARAM_INT);
         return $pdoStatement->execute();
+    }
+
+    /**
+     * Methode permettant de savoir si un mail est utilisé
+     *
+     * @return bool
+     */
+    public function checkEmail()
+    {
+        $query = 'SELECT COUNT(`idUser`) AS `isExist` FROM `6d5ghg_users` WHERE `mail` = :mail';
+        $pdoStatment = $this->pdo->prepare($query);
+        $pdoStatment->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        $pdoStatment->execute();
+        return $pdoStatment->fetch(PDO::FETCH_OBJ)->isExist;
     }
 
     /**

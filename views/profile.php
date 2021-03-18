@@ -13,13 +13,13 @@
                 <!-- Modification pseudo -->
                 <div class="form-group col-4 offset-1 mt-3">
                     <label for="pseudo" class="text-left mb-3 labelTextSize">Modifier votre pseudo :</label>
-                    <input type="text" name="pseudo" id="pseudo" class="form-control" value="<?= $_SESSION['user']['pseudo'] ?>" />
+                    <input type="text" name="pseudo" id="pseudo" class="form-control" value="<?= !empty($_POST['pseudo']) ? $_POST['pseudo'] : $userInfo->pseudo ?>" />
                     <p class="text-danger text-center"><?= isset($formErrors['pseudo']) ? $formErrors['pseudo'] : '' ?></p>
                 </div>
                 <!-- Modification mail -->
                 <div class="form-group col-4 offset-2 mt-3">
                     <label for="mail" class="text-left mb-3 labelTextSize">Modifier votre adresse mail :</label>
-                    <input type="text" name="mail" id="mail" class="form-control" value="<?= !empty($_POST['mail']) ? $_POST['mail'] : '' ?>" />
+                    <input type="text" name="mail" id="mail" class="form-control" value="<?= !empty($_POST['mail']) ? $_POST['mail'] : $userInfo->mail ?>" />
                     <p class="text-danger text-center"><?= isset($formErrors['mail']) ? $formErrors['mail'] : '' ?></p>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                 <!-- Modification code postal ville tournois -->
                 <div class="form-group col-4 offset-1">
                     <label for="zipCode" class="text-left mb-3 labelTextSize">Saisissez le code postal de votre ville de tournois :</label>
-                    <input type="text" class="form-control text-left mb-3" name="zipCode" id="zipCode" value="<?= (isset($_POST['zipCode'])) ? $_POST['zipCode'] : '' ?>" />
+                    <input type="text" class="form-control text-left mb-3" name="zipCode" id="zipCode" value="<?= (isset($_POST['zipCode'])) ? $_POST['zipCode'] : $userInfo->zipCode ?>" />
                     <p class="text-danger text-center"><?= isset($formErrors['zipCode']) ? $formErrors['zipCode'] : '' ?></p>
                 </div>
                 <!-- Modification ville tournois -->
@@ -60,9 +60,14 @@
                     <input type="password" name="newPassword" id="newPassword" class="form-control" />
                     <p class="text-danger text-center"><?= isset($formErrors['newPassword']) ? $formErrors['newPassword'] : '' ?></p>
                 </div>
+                <div class="form-group col-4 offset-7">
+                    <label for="confirmNewPassword" class="text-left mb-3 labelTextSize">Retapez votre nouveau mot de passe :</label>
+                    <input type="password" name="confirmNewPassword" id="confirmNewPassword" class="form-control" />
+                    <p class="text-danger text-center"><?= isset($formErrors['confirmNewPassword']) ? $formErrors['confirmNewPassword'] : '' ?></p>
+                </div>
             </div>
-            <input type="submit" class="col-4 offset-4 mb-5" name="updateButton" id="updateButton" value="Modifier les informations" />
-            <input type="submit" class="col-4 offset-4 mb-5" name="deleteButton" id="deleteButton" value="Supprimer votre compte" />
+            <input type="submit" class="btn btn-danger col-4 offset-4 mb-5" name="updateButton" id="updateButton" value="Modifier les informations" />
+            <input type="submit" class="btn btn-danger col-4 offset-4 mb-5" name="deleteButton" id="deleteButton" value="Supprimer votre compte" />
             <p><?= isset($messageUpdate) ? $messageUpdate : '' ?></p>
         </form>
     </div>

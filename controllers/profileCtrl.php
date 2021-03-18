@@ -3,12 +3,14 @@ require(__DIR__ . '../../models/user.php');
 require(__DIR__ . '../../models/cityoftournament.php');
 
 $formErrors = array();
-
+$user = new User();
+$city = new CityOfTournament();
+$user->idUser = $_SESSION['user']['idUser'];
+$userInfo = $user->getUserInfo();
 //Vérification envoi formulaire inscription
 if (isset($_POST['updateButton']))
 {
-    $user = new User();
-    $city = new CityOfTournament();
+
     //Vérification pseudo
     if (!empty($_POST['pseudo']))
     {
@@ -74,7 +76,18 @@ if (isset($_POST['updateButton']))
         $formErrors['newPassword'] = 'Vous n\'avez pas renseigné votre nouveau mot de passe';
     }
 
-
+    // Vérification nouveau mot de passe
+    if (!empty($_POST['confirmNewPassword']))
+    {
+        if ($_POST['confirmNewPassword'] !== $_POST['newPassword'])
+        {
+            $formErrors['confirmNewPassword'] = 'Le mot de passe ne correspond pas à celui que vous avez tapé';
+        }
+    }
+    else
+    {
+        $formErrors['confirmNewPassword'] = 'Vous n\'avez pas retapé votre nouveau mot de passe';
+    }
 
     // Vérification personnage
     /* if (!empty($_POST['mainCharacter']))
@@ -91,14 +104,12 @@ if (isset($_POST['updateButton']))
     } */
 
     //Exécution de la méthode updateUserInfo
-
     if (empty($formErrors))
     {
-        $user->idUser = $_SESSION['user']['idUser'];
-        $user->updateUserInfo();
         if ($user->updateUserInfo())
         {
-            $messageUpdate = 'Vos informations ont été modifiées';
+            header('Location:/modifiedUser');
+            exit;
         }
         else
         {
@@ -107,10 +118,9 @@ if (isset($_POST['updateButton']))
     }
 }
 
+// Suppression du compte
 if (isset($_POST['deleteButton']))
 {
-    $user = new User();
-    $user->idUser = $_SESSION['user']['idUser'];
     $user->deleteUser();
     session_destroy();
     header('Location:/deleted');
