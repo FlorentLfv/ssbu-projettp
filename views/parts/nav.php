@@ -1,5 +1,5 @@
 <!-- Navbar haut de page -->
-<div class="col-12 p-0 sticky-top">
+<div class="col-12 p-0 sticky-top  mb-3">
     <nav class="navbar navbar-expand-xl navbar-dark bg-danger col-12">
         <button class="ms-4 pt-2 pb-2 navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuBurgerNavbar" aria-controls="menuBurgerNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

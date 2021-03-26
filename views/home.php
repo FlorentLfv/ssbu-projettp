@@ -5,7 +5,7 @@
 <?php require_once('parts/nav.php') ?>
 <div class="container">
     <!-- Introduction -->
-    <div class="row">
+    <div class="row mb-5">
         <h2 class="col-12 text-center display-2 mt-3" id="introduction"><strong>Introduction</strong></h2>
 
         <!-- SSBU ? -->

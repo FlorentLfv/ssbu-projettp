@@ -6,6 +6,17 @@
 <div class="container">
     <div class="row">
         <!-- Contenu page -->
-        
+        <h2>Ajouter un personnage</h2>
+        <form action="#" method="POST">
+            <div class="form-group col-6">
+                <label for="characterName">Le nom du personnage :</label>
+                <input type="text" name="characterName" id="characterName" class="form-control"/>
+            </div>
+            <div class="form-group col-6">
+                <label for="characterImg">Image du personnage :</label>
+                <input type="file" name="characterImg" id="characterImg" class="form-control" />
+            </div>
+            <input type="submit" name="characterButton" id="characterButton" />
+        </form>
     </div>
 </div>

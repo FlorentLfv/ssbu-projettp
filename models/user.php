@@ -27,13 +27,12 @@ class User extends Database
         $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
         // on hydrate la valeur de :idCity à l'attribut idCity
         $pdoStatement->bindValue(':idCity', $this->idCity, PDO::PARAM_INT);
-        
         // on exécute la méthode pour insérer les données dans la bdd
         return $pdoStatement->execute();
     }
 
     /**
-     * Méthode permettant de récupérer le nom d'utilisateur de la personne connecté
+     * Méthode permettant la connexion d'un utilisateur
      *
      * @return object
      */
@@ -47,7 +46,7 @@ class User extends Database
     }
 
     /**
-     * Méthode permettant de récupérer le nom d'utilisateur de la personne connecté
+     * Méthode permettant de récupérer les informations de l'utilisateur connecté
      *
      * @return object
      */
