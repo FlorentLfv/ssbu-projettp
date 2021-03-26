@@ -14,7 +14,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Logo jeu -->
-            <img src="../assets/img/logo ssbu.png" id="gameLogo" class="col-4 mt-4 mb-4" alt="Logo Super Smash Bros Ultimate" />
+            <img src="../assets/img/titreSite.png" id="gameLogo" class="col-4 mt-4 mb-4" alt="Logo Super Smash Bros Ultimate" />
             <?php if (isset($_SESSION['user'])) : ?>
                 <div class="dropdown">
                     <button class="btn btn-danger dropdown-toggle col-2 offset-10" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

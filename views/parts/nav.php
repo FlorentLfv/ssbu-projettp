@@ -17,4 +17,5 @@
         </div>
     </nav>
 </div>
+</div>
 <!-- Fin navbar haut de page -->
