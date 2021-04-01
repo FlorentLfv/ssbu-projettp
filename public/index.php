@@ -3,6 +3,7 @@
 require_once(__DIR__ . '../../config/config.php');
 require_once(__DIR__ . '../../models/database.php');
 
+//si il n'y a pas d'action dans le get on appelle le fichier header.php
 if (!isset($_GET['action'])){
     require_once(APP_ROOT . 'views/parts/header.php');
 }

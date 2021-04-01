@@ -44,7 +44,10 @@
                 général les règles suivantes :
             </p>
             <ul class="col-10 offset-1">
-                <li>Les combats se déroulent en 1 contre 1. Chaque joueur a 3 vies par parties. Les objets sont désactivés. Le temps limite est de 7 ou minutes selon le tournoi.</li>
+                <li>
+                    Les combats se déroulent en 1 contre 1. Chaque joueur a 3 vies par parties. Les objets sont désactivés. 
+                    Le temps limite est de 7 ou 8 minutes selon le tournoi.
+                </li>
                 <li>
                     Tous les personnages peuvent être joués, cependant concernant les combattant miis, il peut y avoir des restrictions
                     par rapport aux coups spéciaux selon les tournois auxquels vous participez : vous pouvez être obligé
@@ -82,7 +85,7 @@
         <h2 class="col-12 text-center display-3 mt-3">Présentation d'une association</h2>
         <p>
             En tant qu'adhérent de l'association BlastZone j'aimerai leur faire un petit coucou. En temps normal,
-            cette association propose des sessions chaque vendredi soir de 18h à 23h. 
+            cette association propose des sessions d'entraînements chaque vendredi soir de 18h à 23h. 
             Elle organise également 2 tournois par mois sous forme de "bi-weekly", c'est à dire toutes les 2 semaines.
         </p>
         <img class="col-4 offset-4 mb-3" src="../assets/img/h6asRcBM_400x400.png" alt="Logo BlastZone" title="Logo BlastZone" />
