@@ -259,7 +259,7 @@
         <p>
             Art Of Smash est une série de vidéos réalisée par IzawSmash pour apprendre les mécaniques de Super 
             Smash Bros Ultimate. Ces 5 vidéos servent de guides montrant les techniques basiques, plus destinées 
-            aux débutants, jusqu'aux techniques les plus avancées. Seule la premère partie à été faite en français, 
+            aux débutants, jusqu'aux techniques les plus avancées. Seule la première partie à été traduite et enregistrée en français, 
             mais toutes les autres vidéos en anglais disposent de sous-titres français pour ceux qui ont du mal 
             avec l'anglais.
         </p>
