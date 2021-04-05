@@ -3,8 +3,8 @@ class Character extends Database
 {
     public $idCharacters = 0;
     public $name = '';
-    public $imgCharacter = '';
-    public $presentaion = '';
+    public $pathImgCharacter = '';
+    public $presentation = '';
     public $originFranchise = '';
     public $strengths = '';
     public $weaknesses = '';
@@ -16,11 +16,11 @@ class Character extends Database
      */
     public function addCharacter()
     {
-        $query = 'INSERT INTO `characters` (`name`, `imgCharacter`, `presentation`, `originFranchise`, `strengths`, `weaknesses`) VALUES (:name, :imgCharacter, :presentation, :originFranchise, :strengths, :weaknesses)';
+        $query = 'INSERT INTO `characters` (`name`, `pathImgCharacter`, `presentation`, `originFranchise`, `strengths`, `weaknesses`) VALUES (:name, :pathImgCharacter, :presentation, :originFranchise, :strengths, :weaknesses)';
         $pdoStatement = $this->pdo->prepare($query);
         $pdoStatement->bindValue(':name', $this->name, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':imgCharacter', $this->imgCharacter, PDO::PARAM_STR);
-        $pdoStatement->bindValue(':presentation', $this->presentaion, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':pathImgCharacter', $this->pathImgCharacter, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':presentation', $this->presentation, PDO::PARAM_STR);
         $pdoStatement->bindValue(':originFranchise', $this->originFranchise, PDO::PARAM_STR);
         $pdoStatement->bindValue(':strengths', $this->strengths, PDO::PARAM_STR);
         $pdoStatement->bindValue(':weaknesses', $this->weaknesses, PDO::PARAM_STR);

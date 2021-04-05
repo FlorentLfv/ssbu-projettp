@@ -4,6 +4,7 @@ class Comment extends Database
 {
     public $titleComment = '';
     public $commentContent = '';
+    public $idUser = '';
 
     /**
      * Méthode pour créer un commentaire
@@ -12,10 +13,11 @@ class Comment extends Database
      */
     public function addComment()
     {
-        $query = 'INSERT INTO `comment` (`titleComment`, `commentContent`) VALUES (:titleComment, :commentContent)';
+        $query = 'INSERT INTO `comment` (`titleComment`, `commentContent`, `idUser`) VALUES (:titleComment, :commentContent, :idUser)';
         $pdoStatement = $this->pdo->prepare($query);
         $pdoStatement->bindValue(':titleComment', $this->titleComment, PDO::PARAM_STR);
         $pdoStatement->bindValue(':commentContent', $this->commentContent, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':idUser', $this->idUser, PDO::PARAM_INT);
         return $pdoStatement->execute();
     }
 
