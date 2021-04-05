@@ -53,17 +53,6 @@ CREATE TABLE frameData(
 
 
 #------------------------------------------------------------
-# Table: muChart
-#------------------------------------------------------------
-
-CREATE TABLE muChart(
-        idMuChart      Int  Auto_increment  NOT NULL ,
-        caracteristics Varchar (50) NOT NULL
-	,CONSTRAINT muChart_PK PRIMARY KEY (idMuChart)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: roles
 #------------------------------------------------------------
 
@@ -75,13 +64,14 @@ CREATE TABLE roles(
 
 
 #------------------------------------------------------------
-# Table: cityOfTournament
+# Table: townZip
 #------------------------------------------------------------
 
-CREATE TABLE cityOfTournament(
+CREATE TABLE townZip(
         idCity   Int  Auto_increment  NOT NULL ,
-        cityName Varchar (60) NOT NULL
-	,CONSTRAINT cityOfTournament_PK PRIMARY KEY (idCity)
+        cityName Varchar (60) NOT NULL ,
+        zipCode  Int NOT NULL
+	,CONSTRAINT townZip_PK PRIMARY KEY (idCity)
 )ENGINE=InnoDB;
 
 
@@ -101,7 +91,7 @@ CREATE TABLE 6d5ghg_Users(
 
 	,CONSTRAINT 6d5ghg_Users_characters_FK FOREIGN KEY (idCharacters) REFERENCES characters(idCharacters)
 	,CONSTRAINT 6d5ghg_Users_roles0_FK FOREIGN KEY (idRoles) REFERENCES roles(idRoles)
-	,CONSTRAINT 6d5ghg_Users_cityOfTournament1_FK FOREIGN KEY (idCity) REFERENCES cityOfTournament(idCity)
+	,CONSTRAINT 6d5ghg_Users_townZip1_FK FOREIGN KEY (idCity) REFERENCES townZip(idCity)
 )ENGINE=InnoDB;
 
 
@@ -142,15 +132,15 @@ CREATE TABLE images(
 #------------------------------------------------------------
 
 CREATE TABLE matchUp(
-        idMatchup            Int  Auto_increment  NOT NULL ,
-        idMuChart            Int NOT NULL ,
-        idCharacters         Int NOT NULL ,
-        idCharacters_belongs Int NOT NULL
+        idMatchup      Int  Auto_increment  NOT NULL ,
+        muChartImg     Varchar (50) NOT NULL ,
+        muChartImgAlt  Varchar (50) NOT NULL ,
+        muChartImgPath Varchar (120) NOT NULL ,
+        muChartTitle   Varchar (50) NOT NULL ,
+        idCharacters   Int NOT NULL
 	,CONSTRAINT matchUp_PK PRIMARY KEY (idMatchup)
 
-	,CONSTRAINT matchUp_muChart_FK FOREIGN KEY (idMuChart) REFERENCES muChart(idMuChart)
-	,CONSTRAINT matchUp_characters0_FK FOREIGN KEY (idCharacters) REFERENCES characters(idCharacters)
-	,CONSTRAINT matchUp_characters1_FK FOREIGN KEY (idCharacters_belongs) REFERENCES characters(idCharacters)
+	,CONSTRAINT matchUp_characters_FK FOREIGN KEY (idCharacters) REFERENCES characters(idCharacters)
 )ENGINE=InnoDB;
 
 
@@ -187,10 +177,12 @@ CREATE TABLE nationalityPlayer(
 #------------------------------------------------------------
 
 CREATE TABLE topPlayers(
-        idTopPlayers  Int  Auto_increment  NOT NULL ,
-        pseudoPlayer  Varchar (50) NOT NULL ,
-        idCharacters  Int NOT NULL ,
-        idNationality Int NOT NULL
+        idTopPlayers       Int  Auto_increment  NOT NULL ,
+        pseudoPlayer       Varchar (50) NOT NULL ,
+        photoTopPlayerPath Varchar (120) NOT NULL ,
+        photoTopPlayerName Varchar (50) NOT NULL ,
+        idCharacters       Int NOT NULL ,
+        idNationality      Int NOT NULL
 	,CONSTRAINT topPlayers_PK PRIMARY KEY (idTopPlayers)
 
 	,CONSTRAINT topPlayers_characters_FK FOREIGN KEY (idCharacters) REFERENCES characters(idCharacters)

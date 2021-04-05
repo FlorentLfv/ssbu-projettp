@@ -21,11 +21,13 @@
                         <?= $_SESSION['user']['pseudo'] ?>
                     </button>
                     <ul class="dropdown-menu bg-danger text-center" aria-labelledby="dropdownMenuButton1">
-                        <li>
-                            <!-- Bouton dashboard admin -->
-                            <a href="/dashboard">Dashboard</a>
-                        </li>
-                        <hr />
+                        <?php if ($_SESSION['user']['idUser'] == 17) :?>
+                            <li>
+                                <!-- Bouton dashboard admin -->
+                                <a href="/dashboard">Dashboard</a>
+                            </li>
+                            <hr />
+                        <?php endif;?>
                         <li>
                             <!-- Bouton profil -->
                             <a href="/profile">Profil</a>

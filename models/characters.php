@@ -4,6 +4,10 @@ class Character extends Database
     public $idCharacters = 0;
     public $name = '';
     public $imgCharacter = '';
+    public $presentaion = '';
+    public $originFranchise = '';
+    public $strengths = '';
+    public $weaknesses = '';
 
     /**
      * Méthode pour ajouter un personnage
@@ -12,10 +16,14 @@ class Character extends Database
      */
     public function addCharacter()
     {
-        $query = 'INSERT INTO `characters` (`name`, `imgCharacter`) VALUES (:name, :imgCharacter)';
+        $query = 'INSERT INTO `characters` (`name`, `imgCharacter`, `presentation`, `originFranchise`, `strengths`, `weaknesses`) VALUES (:name, :imgCharacter, :presentation, :originFranchise, :strengths, :weaknesses)';
         $pdoStatement = $this->pdo->prepare($query);
         $pdoStatement->bindValue(':name', $this->name, PDO::PARAM_STR);
         $pdoStatement->bindValue(':imgCharacter', $this->imgCharacter, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':presentation', $this->presentaion, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':originFranchise', $this->originFranchise, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':strengths', $this->strengths, PDO::PARAM_STR);
+        $pdoStatement->bindValue(':weaknesses', $this->weaknesses, PDO::PARAM_STR);
         return $pdoStatement->execute();
     }
 
@@ -24,9 +32,9 @@ class Character extends Database
      *
      * @return object
      */
-    public function getCharactersList()
+    public function getCharactersNameList()
     {
-        $query = 'SELECT * FROM `characters`';
+        $query = 'SELECT `name`, `idCharacter` FROM `characters`';
         $pdoStatement = $this->pdo->query($query);
         return $pdoStatement->fetchAll(PDO::FETCH_OBJ);
     }

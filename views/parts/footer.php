@@ -1,25 +1,28 @@
 <?php if (isset($_SESSION['user'])) : ?>
     <footer class="col-12">
         <!-- Footer commentaire -->
-        <div class="row pt-4 pb-2 bg-danger text-white">
-            <div class="col-4 offset-1">
-                <p id="titleComment" class="h3 fw-bold"><u>Commentaires</u></p>
-                <p class="mt-3">Un avis ? Une suggestion ? Tu peux t’exprimer librement.<br />(En restant
-                    respectueux bien évidemment) :</p>
-            </div>
-            <div class="col-6">
-                <!-- Input commentaire -->
-                <div class="mb-2">
-                    <textarea class="form-control" placeholder="Votre commentaire :" aria-label="With textarea"></textarea>
+        <form action="">
+            <div class="row pt-4 pb-2 bg-danger text-white">
+
+                <div class="col-4 offset-1">
+                    <p id="titleComment" class="h3 fw-bold"><u>Commentaires</u></p>
+                    <p class="mt-3">Un avis ? Une suggestion ? Tu peux t’exprimer librement.<br />(En restant
+                        respectueux bien évidemment) :</p>
                 </div>
-                <!-- Fin input commentaire -->
-                <!-- Bouton footer -->
-                <div class="col-3 offset-9 mb-3">
-                    <input type="submit" name="sendForm" id="sendForm" />
+                <div class="col-6">
+                    <!-- Input commentaire -->
+                    <div class="mb-2">
+                        <textarea class="form-control" placeholder="Votre commentaire :" aria-label="With textarea"></textarea>
+                    </div>
+                    <!-- Fin input commentaire -->
+                    <!-- Bouton footer -->
+                    <div class="col-3 offset-9 mb-3">
+                        <input type="submit" name="sendForm" id="sendForm" />
+                    </div>
+                    <!-- Fin bouton footer -->
                 </div>
-                <!-- Fin bouton footer -->
             </div>
-        </div>
+        </form>
         <!-- Fin footer commentaire -->
     </footer>
 <?php endif; ?>

@@ -11,7 +11,7 @@ let xhr = new XMLHttpRequest();
 // on ajoute un event listener à zipCodeInput quand la touche est relachée pour retourner le code postal
 zipCodeInput.addEventListener('keyup', (e) => {
     let zipCode = e.currentTarget.value;
-    // si le nombre de caractères entrés est strictement égal à 5
+    // si le nombre de caractères entré est strictement égal à 5
     if (zipCode.length === 5) {
 
         //Déclaration d'une variable data qui contient un paramètre zipCode et la valeur du champ zipCode
