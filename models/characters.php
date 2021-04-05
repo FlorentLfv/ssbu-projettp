@@ -34,7 +34,7 @@ class Character extends Database
      */
     public function getCharactersNameList()
     {
-        $query = 'SELECT `name`, `idCharacter` FROM `characters`';
+        $query = 'SELECT `name`, `idCharacter` FROM `characters` ORDER BY `name` ASC';
         $pdoStatement = $this->pdo->query($query);
         return $pdoStatement->fetchAll(PDO::FETCH_OBJ);
     }
