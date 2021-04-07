@@ -28,7 +28,10 @@ class Comment extends Database
      */
     public function getCommentsListAdmin()
     {
-        $query = 'SELECT * FROM `comment`';
+        $query = 'SELECT * 
+        FROM `comment`
+        INNER JOIN `6d5ghg_users`
+        ON `comment`.`idUser` = `6d5ghg_users`.`idUser`';
         $pdoStatement = $this->pdo->query($query);
         return $pdoStatement->fetchAll();
     }

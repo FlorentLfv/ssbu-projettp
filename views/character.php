@@ -23,5 +23,8 @@
         <h4 class="text-center mt-4"><?= $topPlayerInfos->pseudoPlayer ?></h4>
         <img class="col-4 offset-4" src="<?= $topPlayerInfos->photoTopPlayerPath ?>" alt="<?= $topPlayerInfos->photoTopPlayerName ?>" title="<?= $topPlayerInfos->photoTopPlayerName ?>" />
         <p class="text-center"><?= $topPlayerInfos->nameNationality ?></p>
+        <h2 class="text-center mt-3">Guides</h2>
+        <p class="text-center h3 mt-3">Veuillez cliquer sur ce bouton pour choisir un autre personnage</p>
+        <a href="/listePersonnages" class="redPanel col-4 mt-2 offset-4 h3">Personnages</a>
     </div>
 </div>

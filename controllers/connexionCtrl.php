@@ -1,8 +1,12 @@
 <?php
 require(__DIR__ . '../../models/user.php');
 require(__DIR__ . '../../models/cityoftournament.php');
+require(__DIR__ . '../../models/characters.php');
+
 // Déclaration d'un tableau vide pour enregistrer les erreurs de formulaire
 $formErrors = array();
+$character = new Character();
+$charactersNameList = $character->getCharactersNameList();
 
 //Vérification envoi formulaire inscription
 if (isset($_POST['signUpButton']))
@@ -74,9 +78,9 @@ if (isset($_POST['signUpButton']))
     }
 
     // Vérification personnage
-    /* if (!empty($_POST['mainCharacter']))
+    if (!empty($_POST['mainCharacter']))
     {
-        $mainCharacter = $_POST['mainCharacter'];
+        $user->idCharacters = htmlentities($_POST['mainCharacter']);
     }
     elseif (!empty($_POST['mainCharacter']) && $_POST['mainCharacter'] == 'choose')
     {
@@ -85,7 +89,7 @@ if (isset($_POST['signUpButton']))
     else
     {
         $formErrors['mainCharacter'] = 'Votre personnage n\'existe pas (ou pas encore).';
-    } */
+    }
 
     //Vérification et exécution de la méthode addUser
     if (empty($formErrors))

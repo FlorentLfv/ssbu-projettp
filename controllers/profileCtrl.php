@@ -1,12 +1,15 @@
 <?php
 require(__DIR__ . '../../models/user.php');
 require(__DIR__ . '../../models/cityoftournament.php');
+require(__DIR__ . '../../models/characters.php');
 
 $formErrors = array();
 $user = new User();
 $city = new CityOfTournament();
 $user->idUser = $_SESSION['user']['idUser'];
 $userInfo = $user->getUserInfo();
+$character = new Character();
+$charactersNameList = $character->getCharactersNameList();
 //Vérification envoi formulaire inscription
 if (isset($_POST['updateButton']))
 {
@@ -90,9 +93,9 @@ if (isset($_POST['updateButton']))
     }
 
     // Vérification personnage
-    /* if (!empty($_POST['mainCharacter']))
+    if (!empty($_POST['mainCharacter']))
     {
-        $mainCharacter = $_POST['mainCharacter'];
+        $user->idCharacters = htmlentities($_POST['mainCharacter']);
     }
     elseif (!empty($_POST['mainCharacter']) && $_POST['mainCharacter'] == 'choose')
     {
@@ -101,7 +104,7 @@ if (isset($_POST['updateButton']))
     else
     {
         $formErrors['mainCharacter'] = 'Votre personnage n\'existe pas (ou pas encore).';
-    } */
+    }
 
     //Exécution de la méthode updateUserInfo
     if (empty($formErrors))

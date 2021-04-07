@@ -17,12 +17,18 @@ require_once(APP_ROOT . 'controllers/footerCtrl.php');
                     <div class="mb-2 col-6 form-group">
                         <input class="form-control" type="text" name="titleComment" id="titleComment" placeholder="Titre du commentaire :" />
                     </div>
+                    <?php if (isset($_POST['commentButton'])) : ?>
+                        <p class="text-light text-center"><?= isset($formErrors['titleComment']) ? $formErrors['titleComment'] : '' ?></p>
+                    <?php endif; ?>
                     <!-- Input commentaire -->
                     <div class="mb-2">
                         <textarea class="form-control" placeholder="Votre commentaire :" aria-label="With textarea" name="commentContent"></textarea>
                     </div>
+                    <?php if (isset($_POST['commentButton'])) : ?>
+                        <p class="text-light text-center"><?= isset($formErrors['commentContent']) ? $formErrors['commentContent'] : '' ?></p>
+                    <?php endif; ?>
                     <!-- Bouton footer -->
-                    <div class="col-3 offset-9 mb-3">
+                    <div class="col-xl-3 offset-xl-9 col-lg-5 mb-3">
                         <input type="submit" name="commentButton" id="commentButton" value="Envoyer le commentaire" />
                     </div>
                 </div>

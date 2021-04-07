@@ -4,7 +4,7 @@
 </div>
 <?php require_once(APP_ROOT . 'views/parts/nav.php') ?>
 <div class="container">
-    <div class="row">
+    <div class="row mb-5">
         <!-- Contenu page -->
         <h2 class="text-center mt-3 display-3 fw-bold">Lexique</h2>
         <h3 class="mt-3 display-5 fw-bold">Les différents coups du jeu :</h3>
@@ -287,12 +287,6 @@
         <h3 class="text-center mt-4">Entraînement</h3>
         <div class="text-center">
             <iframe width="600" height="337" src="https://www.youtube.com/embed/DrBWKkO9OeU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="mb-5">
-            <h2 class="text-center mt-3 display-3">Guide par personnage</h2>
-            <select name="characterGuide" id="characterGuide" class="col-4 offset-4 mt-3 ">
-                <option disabled selected value="Choose">Choisir un personnage</option>
-            </select>
         </div>
     </div>
 </div>

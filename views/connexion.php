@@ -1,11 +1,35 @@
-<?php 
-require_once(APP_ROOT . 'controllers/connexionCtrl.php'); 
+<?php
+require_once(APP_ROOT . 'controllers/connexionCtrl.php');
 require_once('parts/nav.php');
 ?>
 <!-- Formulaire -->
 <div class="container">
-    <div class="row">
-        <div class="col-4 offset-1">
+    <div class="row mb-5">
+        <div class="col-xl-4 offset-xl-1 col-sm-12">
+            <form action="#" method="POST">
+                <!-- Partie connexion -->
+                <h2 class="text-center mt-3 display-3 mb-3">Connexion</h2>
+                <!-- Champ pseudo -->
+                <div class="form-group">
+                    <label for="emailSignIn" class="text-left mb-3 labelTextSize">Votre adresse mail :</label>
+                    <input type="text" name="emailSignIn" id="emailSignIn" class="form-control mb-3 col-5" value="<?= !empty($_POST['emailSignIn']) ? $_POST['emailSignIn'] : '' ?>" />
+                    <?php if (isset($_POST['signInButton'])) : ?>
+                        <p class="text-danger text-center "><?= isset($formErrors['emailSignIn']) ? $formErrors['emailSignIn'] : '' ?></p>
+                    <?php endif; ?>
+                </div>
+                <!-- Champ mot de passe -->
+                <div class="form-group">
+                    <label for="passwordSignIn" class="text-left mb-3 labelTextSize">Votre mot de passe :</label>
+                    <input type="password" name="passwordSignIn" id="passwordSignIn" class="form-control mb-3 col-5" value="<?= !empty($_POST['passwordSignIn']) ? $_POST['passwordSignIn'] : '' ?>" />
+                    <?php if (isset($_POST['signInButton'])) : ?>
+                        <p class="text-danger text-center "><?= isset($formErrors['passwordSignIn']) ? $formErrors['passwordSignIn'] : '' ?></p>
+                    <?php endif; ?>
+                </div>
+                <!-- Bouton connexion -->
+                <input type="submit" name="signInButton" id="signInButton" class="btn btn-danger " value="Se connecter" />
+            </form>
+        </div>
+        <div class="col-xl-4 offset-xl-2 col-sm-12">
             <form action="#" method="POST">
                 <!-- Partie inscription -->
                 <h2 class="text-center mt-3 display-3 mb-3">Inscription</h2>
@@ -52,6 +76,9 @@ require_once('parts/nav.php');
                     <label for="mainCharacter" class="text-left mb-3 labelTextSize">Votre personnage principal :</label>
                     <select name="mainCharacter" id="mainCharacter" class="form-select">
                         <option value="default" selected disabled>Choisissez un personnage</option>
+                        <?php foreach ($charactersNameList as $character) : ?>
+                            <option value="<?= $character->idCharacter ?>"><?= $character->name ?></option>
+                        <?php endforeach; ?>
                     </select>
                     <p class="text-danger text-center "><?= isset($formErrors['mainCharacter']) ? $formErrors['mainCharacter'] : '' ?></p>
                 </div>
@@ -59,30 +86,6 @@ require_once('parts/nav.php');
                 <input type="submit" name="signUpButton" id="signUpButton" class="btn btn-danger" value="S'inscrire" />
             </form>
             <p><?= isset($messageSignUp) ? $messageSignUp : '' ?></p>
-        </div>
-        <div class="col-4 offset-2">
-            <form action="#" method="POST">
-                <!-- Partie connexion -->
-                <h2 class="text-center mt-3 display-3 mb-3">Connexion</h2>
-                <!-- Champ pseudo -->
-                <div class="form-group">
-                    <label for="emailSignIn" class="text-left mb-3 labelTextSize">Votre adresse mail :</label>
-                    <input type="text" name="emailSignIn" id="emailSignIn" class="form-control mb-3 col-5" value="<?= !empty($_POST['emailSignIn']) ? $_POST['emailSignIn'] : '' ?>" />
-                    <?php if (isset($_POST['signInButton'])) : ?>
-                        <p class="text-danger text-center "><?= isset($formErrors['emailSignIn']) ? $formErrors['emailSignIn'] : '' ?></p>
-                    <?php endif; ?>
-                </div>
-                <!-- Champ mot de passe -->
-                <div class="form-group">
-                    <label for="passwordSignIn" class="text-left mb-3 labelTextSize">Votre mot de passe :</label>
-                    <input type="password" name="passwordSignIn" id="passwordSignIn" class="form-control mb-3 col-5" value="<?= !empty($_POST['passwordSignIn']) ? $_POST['passwordSignIn'] : '' ?>" />
-                    <?php if (isset($_POST['signInButton'])) : ?>
-                        <p class="text-danger text-center "><?= isset($formErrors['passwordSignIn']) ? $formErrors['passwordSignIn'] : '' ?></p>
-                    <?php endif; ?>
-                </div>
-                <!-- Bouton connexion -->
-                <input type="submit" name="signInButton" id="signInButton" class="btn btn-danger" value="Se connecter" />
-            </form>
         </div>
     </div>
 </div>

@@ -7,6 +7,7 @@ class User extends Database
     public $mail = '';
     public $password = '';
     public $idCity = null;
+    public $idCharacters = null;
 
     /**
      * méthode pour ajouter un utilisateur
@@ -17,7 +18,7 @@ class User extends Database
     public function addUser()
     {
         // on définit la requête pour ajouter un utilisateur qu'on stocke dans $query
-        $query = 'INSERT INTO `6d5ghg_users` (`pseudo`, `mail`, `password`, `idCity`) VALUES (:pseudo, :mail, :password, :idCity);';
+        $query = 'INSERT INTO `6d5ghg_users` (`pseudo`, `mail`, `password`, `idCity`, `idCharacters`) VALUES (:pseudo, :mail, :password, :idCity, :idCharacters);';
         $pdoStatement = $this->pdo->prepare($query);
         // on hydrate la valeur de :pseudo à l'attribut pseudo
         $pdoStatement->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
@@ -27,6 +28,8 @@ class User extends Database
         $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
         // on hydrate la valeur de :idCity à l'attribut idCity
         $pdoStatement->bindValue(':idCity', $this->idCity, PDO::PARAM_INT);
+        // on hydrate la valeur de :idCharacters à l'attribut idCharacters
+        $pdoStatement->bindValue(':idCharacters', $this->idCharacters, PDO::PARAM_INT);
         // on exécute la méthode pour insérer les données dans la bdd
         return $pdoStatement->execute();
     }
@@ -71,13 +74,14 @@ class User extends Database
     public function updateUserInfo()
     {
         $query = 'UPDATE `6d5ghg_users` 
-        SET `pseudo` = :pseudo, `mail` = :mail, `password` = :password, `idCity` = :idCity 
+        SET `pseudo` = :pseudo, `mail` = :mail, `password` = :password, `idCity` = :idCity, `idCharacters` = :idCharacters
         WHERE `idUser` = :idUser';
         $pdoStatement = $this->pdo->prepare($query);
         $pdoStatement->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         $pdoStatement->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         $pdoStatement->bindValue(':password', $this->password, PDO::PARAM_STR);
         $pdoStatement->bindValue(':idCity', $this->idCity, PDO::PARAM_INT);
+        $pdoStatement->bindValue(':idCharacters', $this->idCharacters, PDO::PARAM_INT);
         $pdoStatement->bindValue(':idUser', $this->idUser, PDO::PARAM_INT);
         return $pdoStatement->execute();
     }

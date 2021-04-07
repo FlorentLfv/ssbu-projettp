@@ -20,8 +20,8 @@ class FrameData extends Database
      */
     public function addMoveData()
     {
-        $query = 'INSERT INTO `framedata` (`moveName`, `frameStartup`, `onShield`, `activeFrame`, `totalFrame`, `frameLandingLag`, `frameShieldLag`, `frameShieldStun`, `multipleHitbox`) 
-        VALUES (:moveName, :frameStartup, :onShield, :activeFrame, :totalFrame, :frameLandingLag, :frameShieldLag, :frameShieldStun, :multipleHitbox)';
+        $query = 'INSERT INTO `framedata` (`moveName`, `frameStartup`, `onShield`, `activeFrame`, `totalFrame`, `frameLandingLag`, `frameShieldLag`, `frameShieldStun`, `multipleHitbox`, `idCharacters`) 
+        VALUES (:moveName, :frameStartup, :onShield, :activeFrame, :totalFrame, :frameLandingLag, :frameShieldLag, :frameShieldStun, :multipleHitbox, :idCharacters)';
         $pdoStatement = $this->pdo->prepare($query);
         $pdoStatement->bindValue(':moveName', $this->moveName, PDO::PARAM_STR);
         $pdoStatement->bindValue(':frameStartup', $this->frameStartup, PDO::PARAM_INT);
@@ -32,6 +32,7 @@ class FrameData extends Database
         $pdoStatement->bindValue(':frameShieldLag', $this->frameShieldLag, PDO::PARAM_INT);
         $pdoStatement->bindValue(':frameShieldStun', $this->frameShieldStun, PDO::PARAM_INT);
         $pdoStatement->bindValue(':multipleHitbox', $this->multipleHitbox, PDO::PARAM_INT);
+        $pdoStatement->bindValue(':idCharacters', $this->idCharacters, PDO::PARAM_INT);
         return $pdoStatement->execute();
     }
 
@@ -49,6 +50,22 @@ class FrameData extends Database
         WHERE `idCharacters` = :idCharacters';
         $pdoStatement = $this->pdo->prepare($query);
         $pdoStatement->bindValue(':idCharacters', $this->idCharacters, PDO::PARAM_INT);
+        $pdoStatement->execute();
+        return $pdoStatement->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Méthode pour récupérer l'id et le nom de toutes les frame data
+     *
+     * @return object
+     */
+    public function getMoveDataList()
+    {
+        $query = 'SELECT `idFrameData`, `moveName`, `characters`.`name` 
+        FROM `frameData`
+        INNER JOIN `characters`
+        ON `frameData`.`idCharacters` = `characters`.`idCharacter`';
+        $pdoStatement = $this->pdo->query($query);
         $pdoStatement->execute();
         return $pdoStatement->fetchAll(PDO::FETCH_OBJ);
     }

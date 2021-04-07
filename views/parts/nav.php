@@ -10,7 +10,7 @@
                 <a class="nav-link mx-auto pt-3 fw-bold h5" href="/guides">Guides</a>
                 <a class="nav-link mx-auto pt-3 fw-bold h5" href="/tournois">Tournois</a>
                 <a class="nav-link mx-auto pt-3 fw-bold h5" href="/tierLists">Tier Lists</a>
-                <a class="nav-link mx-auto pt-3 fw-bold h5" href="/patchNotes">Patch Notes</a>
+                <a class="nav-link mx-auto pt-3 fw-bold h5" href="/patchNotesEN">Patch Notes</a>
                 <a class="nav-link mx-auto pt-3 fw-bold h5" href="/map" hidden>Carte</a>
             </div>
         </div>
