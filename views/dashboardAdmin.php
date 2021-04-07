@@ -93,6 +93,14 @@ require_once(APP_ROOT . 'controllers/dashboardCtrl.php');
                 <input type="text" name="topPlayerPseudo" id="topPlayerPseudo" class="form-control" />
             </div>
             <div class="form-group col-6 mb-3">
+                <label for="topPlayerPhotoName">Nom photo du top player :</label>
+                <input type="text" name="topPlayerPhotoName" id="topPlayerPhotoName" class="form-control" />
+            </div>
+            <div class="form-group col-6 mb-3">
+                <label for="topPlayerPhotoPath">Chemin de la photo du top player :</label>
+                <input type="text" name="topPlayerPhotoPath" id="topPlayerPhotoPath" class="form-control" />
+            </div>
+            <div class="form-group col-6 mb-3">
                 <label for="characterName">Le personnage qu'il joue :</label>
                 <select name="characterName" id="characterName" class="form-select">
                     <option value="default" selected disabled>Choisissez un personnage</option>

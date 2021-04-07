@@ -11,7 +11,13 @@ class FrameData extends Database
     public $frameShieldLag = '';
     public $frameShieldStun = '';
     public $multipleHitbox = '';
+    public $idCharacters = '';
 
+    /**
+     * Méthode pour ajouter la frame data d'un coup
+     *
+     * @return bool
+     */
     public function addMoveData()
     {
         $query = 'INSERT INTO `framedata` (`moveName`, `frameStartup`, `onShield`, `activeFrame`, `totalFrame`, `frameLandingLag`, `frameShieldLag`, `frameShieldStun`, `multipleHitbox`) 
@@ -27,5 +33,23 @@ class FrameData extends Database
         $pdoStatement->bindValue(':frameShieldStun', $this->frameShieldStun, PDO::PARAM_INT);
         $pdoStatement->bindValue(':multipleHitbox', $this->multipleHitbox, PDO::PARAM_INT);
         return $pdoStatement->execute();
+    }
+
+    /**
+     * Méthode pour récupérer les informations d'un coup
+     *
+     * @return object
+     */
+    public function getMoveData()
+    {
+        $query = 'SELECT *
+        FROM `framedata` 
+        INNER JOIN `gifframedata`
+        ON `framedata`.`idFrameData` = `gifframedata`.`idFrameData`
+        WHERE `idCharacters` = :idCharacters';
+        $pdoStatement = $this->pdo->prepare($query);
+        $pdoStatement->bindValue(':idCharacters', $this->idCharacters, PDO::PARAM_INT);
+        $pdoStatement->execute();
+        return $pdoStatement->fetchAll(PDO::FETCH_OBJ);
     }
 }

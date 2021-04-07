@@ -1,7 +1,7 @@
 <?php
 class Character extends Database
 {
-    public $idCharacters = 0;
+    public $idCharacter = 0;
     public $name = '';
     public $pathImgCharacter = '';
     public $presentation = '';
@@ -47,8 +47,9 @@ class Character extends Database
     public function getCharacterInfos()
     {
         $query = 'SELECT * FROM `characters` WHERE `idCharacter` = :idCharacter';
-        $pdoStatement = $this->pdo->query($query);
+        $pdoStatement = $this->pdo->prepare($query);
         $pdoStatement->bindValue(':idCharacter', $this->idCharacter, PDO::PARAM_INT);
-        return $pdoStatement->fetchAll(PDO::FETCH_OBJ);
+        $pdoStatement->execute();
+        return $pdoStatement->fetch(PDO::FETCH_OBJ);
     }
 }

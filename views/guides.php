@@ -264,11 +264,11 @@
             avec l'anglais.
         </p>
         <h3 class="text-center">Niveau débutant</h3>
-        <div class="col-lg-6 col-sm-12 text-center">
+        <div class="col-xl-6 col-lg-12 text-center">
             <h4>Version anglaise</h4>
             <iframe width="600" height="337" src="https://www.youtube.com/embed/ta3L35wsE6o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <div class="col-lg-6 col-sm-12 text-center">
+        <div class="col-xl-6 col-lg-12 text-center">
             <h4>Version française</h4>
             <iframe width="600" height="337" src="https://www.youtube.com/embed/4dmqG-2QkFY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
