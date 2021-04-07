@@ -8,7 +8,7 @@
     <div class="row mb-5">
         <!-- Contenu page -->
         <?php foreach ($frameDataInfos as $frameData) : ?>
-            <div class="card col-xl-3 offset-xl-1 col-sm-4 offset-sm-1 mt-3" style="width: 18rem;">
+            <div class="card col-xl-3 offset-xl-1 col-sm-4 offset-sm-1 mt-3">
                 <div class="card-body">
                     <h3><?= $frameData->moveName ?></h3>
                 </div>
